@@ -1,0 +1,24 @@
+namespace Erp.MRPSManager
+{
+    using System;
+    using System.ServiceModel;
+    using System.ServiceModel.Channels;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.Web;
+    using System.Data;
+
+
+    // 테이블('Parts')에 관한 Interface 클래스
+    // 여기 코드는 용도에 맞게 변경하여 사용하시오
+    // 
+    [ServiceContract()]
+    [ServiceKnownType(typeof(System.DBNull))]
+
+        [OperationContract()]
+        [WebGet()]
+        [WebInvoke()]
+         DataSet GetPartInfo4(string partCode);
+
+
+    }
+}

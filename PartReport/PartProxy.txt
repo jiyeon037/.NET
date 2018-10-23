@@ -1,0 +1,22 @@
+namespace Erp.MRPSManager
+{
+    using System;
+    using System.ServiceModel;
+    using System.ServiceModel.Channels;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.Web;
+    using System.Data;
+
+
+    public class PartProxy : ClientBase<PartInterface>, PartInterface
+    {
+        
+        public DataSet GetPartInfo4(string partCode)
+        {
+            return base.Channel.GetPartInfo4(partCode);
+
+        }
+
+
+    }
+}

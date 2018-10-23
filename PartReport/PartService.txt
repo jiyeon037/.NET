@@ -1,0 +1,45 @@
+namespace Erp.MRPSManager
+{
+    using System;
+    using System.ServiceModel;
+    using System.ServiceModel.Channels;
+    using System.Runtime.Serialization;
+    using System.ServiceModel.Web;
+    using System.Data;
+
+
+    // 테이블('Parts')에 대한 Service 클래스
+    // 여기 코드는 용도에 맞게 수정하여 사용하십시오
+    // 
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
+    public class PartService : EnterpriseManager.Service, PartInterface
+    {
+
+        public DataSet GetPartInfo4(string partCode)
+        {
+            string partCodeLike = partCode + "%";
+            // Sql Command 명령문
+            System.Data.IDbCommand sqlSelectCommand = EnterpriseManager.DbFactory.CreateDbCommand();
+            sqlSelectCommand.CommandText =
+@"
+select top 99999999 PartCode, PartName, MeasureUnit, PartType, Route, OrderLeadTime
+from Parts 
+where PartCode like '" + partCodeLike + "'  Order by PartCode "
++
+@"
+select b.PartCode, b.PartSpec, b.PartCodeX, b.PartSpecX, b.LogicalWeight, a.PartType, a.OrderLeadTime, b.PartName2, b.MeasureUnit,
+         b.OutDiameter, b.InDiameter, b.Thick, b.Length, b.MaterialCode, ISNULL(b.원소재코드, '') 원소재코드 , 
+         b.PartSpecXML.value('(PartSpecs/구도번)[1]','varchar(max)') 구도번, b.PartSpecXML.value('(PartSpecs/비고)[1]','varchar(max)') 비고  " +
+"from (select  top 99999999 * from Parts where PartCode like '" + partCodeLike + "' " +
+@"  Order by PartCode) a inner join PartSpecs b on a.PartCode = b.PartCode WHERE b.PartType = 'M'
+   Order by PartCodeX 
+";
+
+            sqlSelectCommand.CommandType = System.Data.CommandType.Text;
+            // 
+            // 명령문을 호출한다
+            DataSet dataSet = this.GetDataSet(sqlSelectCommand);
+            sqlSelectCommand.Dispose();
+            return dataSet;
+        }
+}

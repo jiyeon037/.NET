@@ -1,0 +1,156 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using C1.Win.C1FlexGrid;
+
+namespace Erp.CodeViewer.Custom
+{
+    public partial class PartForm7 : Form
+    {
+        //조회후에 참조정보-----------------------
+        public string partCode;
+        public string partName;
+        public string partSpec;
+        public string partCodeX;
+        public string partSpecX;
+        public decimal logicalWeight;
+        public string partTypeName;
+        public string partType = string.Empty;
+        public string measureUnit;
+
+        public int OrderLeadTime = 0;
+        public decimal OutDiameter { get; set; }
+        public decimal InDiameter { get; set; }
+        public decimal Thick { get; set; }
+        public decimal Length { get; set; }
+        public string MaterialCode { get; set; }
+
+        //----------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        public PartForm7()
+        {
+            InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+			fpSpreadPartSpec.Sheets[0].AutoFilterMode = FarPoint.Win.Spread.AutoFilterMode.EnhancedContextMenu;
+			ShowData();
+        }
+
+
+        private void buttonSearchPart_Click(object sender, EventArgs e)
+        {
+            if (this.radioButtonPartCode.Checked)
+                ShowData();//제품코드기준
+            else
+                ShowData2();
+        }
+
+        private void ShowData()
+        {
+            this.partFormDS3.Clear();
+
+            DataSet dataSet = Erp.MRPSManager.Part.GetPartInfo4(textBoxPart.Text);
+			partFormDS3.PartSpec.Merge(dataSet.Tables[1]);
+
+     
+            foreach (Data.PartFormDS3.PartSpecRow partSpecRow in partFormDS3.PartSpec.Rows)
+            {
+                switch (partSpecRow.PartType)
+                {
+                    case "M":
+                        partSpecRow.PartTypeName = "제조품목";
+                        break;
+					default:
+						throw new Exception("에러: 알수없는 PartType: " + partSpecRow.PartType);
+				}
+            }
+        }
+
+        private void ShowData2()
+        {
+            this.partFormDS3.Clear();
+            DataSet dataSet = Erp.MRPSManager.Part.GetPartInfo5(textBoxPart.Text);
+			partFormDS3.PartSpec.Merge(dataSet.Tables[1]);
+
+         
+            foreach (Data.PartFormDS3.PartSpecRow partSpecRow in partFormDS3.PartSpec.Rows)
+            {
+                switch (partSpecRow.PartType)
+                {
+                    case "M":
+                        partSpecRow.PartTypeName = "제조품목";
+                        break;
+					default:
+						throw new Exception("에러: 알수없는 PartType: " + partSpecRow.PartType);
+				}
+            }
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+			//선택된 정보를 읽어온다.
+			int row = this.fpSpreadPartSpec.ActiveSheet.ActiveRowIndex;
+
+			int cnt = this.fpSpreadPartSpec.ActiveSheet.RowCount;
+            if (cnt < 1)
+            {
+                return;
+            }
+            //정의한다.
+            this.partCode = fpSpreadPartSpec.ActiveSheet.Cells[row, 0].Text;
+            this.partSpec = fpSpreadPartSpec.ActiveSheet.Cells[row, 1].Text;
+            this.partCodeX = fpSpreadPartSpec.ActiveSheet.Cells[row, 3].Text;
+            this.partSpecX = fpSpreadPartSpec.ActiveSheet.Cells[row, 4].Text;
+            this.partName = fpSpreadPartSpec.ActiveSheet.Cells[row, 5].Text;
+			this.measureUnit = fpSpreadPartSpec.ActiveSheet.Cells[row, 26].Text;
+			this.partType = fpSpreadPartSpec.ActiveSheet.Cells[row, 8].Text;
+			this.partTypeName = fpSpreadPartSpec.ActiveSheet.Cells[row, 9].Text;
+			this.logicalWeight = Convert.ToDecimal(fpSpreadPartSpec.ActiveSheet.Cells[row, 7].Value);
+			this.OrderLeadTime = Convert.ToInt32(fpSpreadPartSpec.ActiveSheet.Cells[row, 10].Value);
+			this.InDiameter = Convert.ToDecimal(fpSpreadPartSpec.ActiveSheet.Cells[row, 11].Value);
+			this.OutDiameter = Convert.ToDecimal(fpSpreadPartSpec.ActiveSheet.Cells[row, 12].Value);
+			this.Length = Convert.ToDecimal(fpSpreadPartSpec.ActiveSheet.Cells[row, 14].Value);
+			this.Thick = Convert.ToDecimal(fpSpreadPartSpec.ActiveSheet.Cells[row, 13].Value);
+            this.MaterialCode = fpSpreadPartSpec.ActiveSheet.Cells[row, 24].Text;
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void radioButtonPartCode_CheckedChanged(object sender, EventArgs e)
+        {
+            labelPart.Text = radioButtonPartCode.Text;
+        }
+
+        private void radioButtonPartName_CheckedChanged(object sender, EventArgs e)
+        {
+            labelPart.Text = radioButtonPartName.Text;
+        }
+
+		private void fpSpreadPartSpec_CellDoubleClick(object sender, FarPoint.Win.Spread.CellClickEventArgs e)
+		{
+				this.buttonOk.PerformClick();
+		}
+
+		private void textBoxPart_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return)
+			{
+				this.buttonSearchPart.PerformClick();
+			}
+		}
+    }
+}
