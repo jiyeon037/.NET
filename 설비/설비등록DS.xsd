@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="설비등록DS" targetNamespace="http://tempuri.org/설비등록DS.xsd" xmlns:mstns="http://tempuri.org/설비등록DS.xsd" xmlns="http://tempuri.org/설비등록DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="설비등록DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="설비등록DS" msprop:Generator_UserDSName="설비등록DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="보전이력" msprop:Generator_TableClassName="보전이력DataTable" msprop:Generator_TableVarName="table보전이력" msprop:Generator_TablePropName="보전이력" msprop:Generator_RowDeletingName="보전이력RowDeleting" msprop:Generator_RowChangingName="보전이력RowChanging" msprop:Generator_RowEvHandlerName="보전이력RowChangeEventHandler" msprop:Generator_RowDeletedName="보전이력RowDeleted" msprop:Generator_UserTableName="보전이력" msprop:Generator_RowChangedName="보전이력RowChanged" msprop:Generator_RowEvArgName="보전이력RowChangeEvent" msprop:Generator_RowClassName="보전이력Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="관리코드" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="column관리코드" msprop:Generator_ColumnPropNameInRow="관리코드" msprop:Generator_ColumnPropNameInTable="관리코드Column" msprop:Generator_UserColumnName="관리코드" type="xs:string" minOccurs="0" />
+              <xs:element name="순번" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="column순번" msprop:Generator_ColumnPropNameInRow="순번" msprop:Generator_ColumnPropNameInTable="순번Column" msprop:Generator_UserColumnName="순번" type="xs:int" minOccurs="0" />
+              <xs:element name="수리일자" msprop:Generator_ColumnVarNameInTable="column수리일자" msprop:Generator_ColumnPropNameInRow="수리일자" msprop:Generator_ColumnPropNameInTable="수리일자Column" msprop:Generator_UserColumnName="수리일자" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="고장내용" msprop:Generator_ColumnVarNameInTable="column고장내용" msprop:Generator_ColumnPropNameInRow="고장내용" msprop:Generator_ColumnPropNameInTable="고장내용Column" msprop:Generator_UserColumnName="고장내용" type="xs:string" minOccurs="0" />
+              <xs:element name="수리내역" msprop:Generator_ColumnVarNameInTable="column수리내역" msprop:Generator_ColumnPropNameInRow="수리내역" msprop:Generator_ColumnPropNameInTable="수리내역Column" msprop:Generator_UserColumnName="수리내역" type="xs:string" minOccurs="0" />
+              <xs:element name="수리부품" msprop:Generator_ColumnVarNameInTable="column수리부품" msprop:Generator_ColumnPropNameInRow="수리부품" msprop:Generator_ColumnPropNameInTable="수리부품Column" msprop:Generator_UserColumnName="수리부품" type="xs:string" minOccurs="0" />
+              <xs:element name="수리처" msprop:Generator_ColumnVarNameInTable="column수리처" msprop:Generator_ColumnPropNameInRow="수리처" msprop:Generator_ColumnPropNameInTable="수리처Column" msprop:Generator_UserColumnName="수리처" type="xs:string" minOccurs="0" />
+              <xs:element name="비용" msprop:Generator_ColumnVarNameInTable="column비용" msprop:Generator_ColumnPropNameInRow="비용" msprop:Generator_ColumnPropNameInTable="비용Column" msprop:Generator_UserColumnName="비용" type="xs:int" minOccurs="0" />
+              <xs:element name="시간" msprop:Generator_ColumnVarNameInTable="column시간" msprop:Generator_ColumnPropNameInRow="시간" msprop:Generator_ColumnPropNameInTable="시간Column" msprop:Generator_UserColumnName="시간" type="xs:int" minOccurs="0" />
+              <xs:element name="확인" msprop:Generator_ColumnVarNameInTable="column확인" msprop:Generator_ColumnPropNameInRow="확인" msprop:Generator_ColumnPropNameInTable="확인Column" msprop:Generator_UserColumnName="확인" type="xs:int" minOccurs="0" />
+              <xs:element name="수리결과" msprop:Generator_ColumnVarNameInTable="column수리결과" msprop:Generator_ColumnPropNameInRow="수리결과" msprop:Generator_ColumnPropNameInTable="수리결과Column" msprop:Generator_UserColumnName="수리결과" type="xs:string" minOccurs="0" />
+              <xs:element name="불출일자" msprop:Generator_ColumnVarNameInTable="column불출일자" msprop:Generator_ColumnPropNameInRow="불출일자" msprop:Generator_ColumnPropNameInTable="불출일자Column" msprop:Generator_UserColumnName="불출일자" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="입고일자" msprop:Generator_ColumnVarNameInTable="column입고일자" msprop:Generator_ColumnPropNameInRow="입고일자" msprop:Generator_ColumnPropNameInTable="입고일자Column" msprop:Generator_UserColumnName="입고일자" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="년도" msprop:Generator_ColumnVarNameInTable="column년도" msprop:Generator_ColumnPropNameInRow="년도" msprop:Generator_ColumnPropNameInTable="년도Column" msprop:Generator_UserColumnName="년도" type="xs:int" minOccurs="0" />
+              <xs:element name="분기" msprop:Generator_ColumnVarNameInTable="column분기" msprop:Generator_ColumnPropNameInRow="분기" msprop:Generator_ColumnPropNameInTable="분기Column" msprop:Generator_UserColumnName="분기" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="중요부품" msprop:Generator_TableClassName="중요부품DataTable" msprop:Generator_TableVarName="table중요부품" msprop:Generator_TablePropName="중요부품" msprop:Generator_RowDeletingName="중요부품RowDeleting" msprop:Generator_RowChangingName="중요부품RowChanging" msprop:Generator_RowEvHandlerName="중요부품RowChangeEventHandler" msprop:Generator_RowDeletedName="중요부품RowDeleted" msprop:Generator_UserTableName="중요부품" msprop:Generator_RowChangedName="중요부품RowChanged" msprop:Generator_RowEvArgName="중요부품RowChangeEvent" msprop:Generator_RowClassName="중요부품Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="관리코드" msprop:Generator_ColumnVarNameInTable="column관리코드" msprop:Generator_ColumnPropNameInRow="관리코드" msprop:Generator_ColumnPropNameInTable="관리코드Column" msprop:Generator_UserColumnName="관리코드" type="xs:string" minOccurs="0" />
+              <xs:element name="번호" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="column번호" msprop:Generator_ColumnPropNameInRow="번호" msprop:Generator_ColumnPropNameInTable="번호Column" msprop:Generator_UserColumnName="번호" type="xs:int" minOccurs="0" />
+              <xs:element name="품명" msprop:Generator_ColumnVarNameInTable="column품명" msprop:Generator_ColumnPropNameInRow="품명" msprop:Generator_ColumnPropNameInTable="품명Column" msprop:Generator_UserColumnName="품명" type="xs:string" minOccurs="0" />
+              <xs:element name="규격" msprop:Generator_ColumnVarNameInTable="column규격" msprop:Generator_ColumnPropNameInRow="규격" msprop:Generator_ColumnPropNameInTable="규격Column" msprop:Generator_UserColumnName="규격" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="설비" msprop:Generator_TableClassName="설비DataTable" msprop:Generator_TableVarName="table설비" msprop:Generator_RowChangedName="설비RowChanged" msprop:Generator_TablePropName="설비" msprop:Generator_RowDeletingName="설비RowDeleting" msprop:Generator_RowChangingName="설비RowChanging" msprop:Generator_RowEvHandlerName="설비RowChangeEventHandler" msprop:Generator_RowDeletedName="설비RowDeleted" msprop:Generator_RowClassName="설비Row" msprop:Generator_UserTableName="설비" msprop:Generator_RowEvArgName="설비RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="관리코드" msprop:Generator_ColumnVarNameInTable="column관리코드" msprop:Generator_ColumnPropNameInRow="관리코드" msprop:Generator_ColumnPropNameInTable="관리코드Column" msprop:Generator_UserColumnName="관리코드" type="xs:string" minOccurs="0" />
+              <xs:element name="관리번호" msprop:Generator_ColumnVarNameInTable="column관리번호" msprop:Generator_ColumnPropNameInRow="관리번호" msprop:Generator_ColumnPropNameInTable="관리번호Column" msprop:Generator_UserColumnName="관리번호" type="xs:string" minOccurs="0" />
+              <xs:element name="품명" msprop:Generator_ColumnVarNameInTable="column품명" msprop:Generator_ColumnPropNameInRow="품명" msprop:Generator_ColumnPropNameInTable="품명Column" msprop:Generator_UserColumnName="품명" type="xs:string" minOccurs="0" />
+              <xs:element name="규격" msprop:Generator_ColumnVarNameInTable="column규격" msprop:Generator_ColumnPropNameInRow="규격" msprop:Generator_ColumnPropNameInTable="규격Column" msprop:Generator_UserColumnName="규격" type="xs:string" minOccurs="0" />
+              <xs:element name="제조회사" msprop:Generator_ColumnVarNameInTable="column제조회사" msprop:Generator_ColumnPropNameInRow="제조회사" msprop:Generator_ColumnPropNameInTable="제조회사Column" msprop:Generator_UserColumnName="제조회사" type="xs:string" minOccurs="0" />
+              <xs:element name="구입일자" msprop:Generator_ColumnVarNameInTable="column구입일자" msprop:Generator_ColumnPropNameInRow="구입일자" msprop:Generator_ColumnPropNameInTable="구입일자Column" msprop:Generator_UserColumnName="구입일자" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="금액" msprop:Generator_ColumnVarNameInTable="column금액" msprop:Generator_ColumnPropNameInRow="금액" msprop:Generator_ColumnPropNameInTable="금액Column" msprop:Generator_UserColumnName="금액" type="xs:int" minOccurs="0" />
+              <xs:element name="설치장소" msprop:Generator_ColumnVarNameInTable="column설치장소" msprop:Generator_ColumnPropNameInRow="설치장소" msprop:Generator_ColumnPropNameInTable="설치장소Column" msprop:Generator_UserColumnName="설치장소" type="xs:string" minOccurs="0" />
+              <xs:element name="등급" msprop:Generator_ColumnVarNameInTable="column등급" msprop:Generator_ColumnPropNameInRow="등급" msprop:Generator_ColumnPropNameInTable="등급Column" msprop:Generator_UserColumnName="등급" type="xs:string" minOccurs="0" />
+              <xs:element name="관리부서" msprop:Generator_ColumnVarNameInTable="column관리부서" msprop:Generator_ColumnPropNameInRow="관리부서" msprop:Generator_ColumnPropNameInTable="관리부서Column" msprop:Generator_UserColumnName="관리부서" type="xs:string" minOccurs="0" />
+              <xs:element name="관리책임자" msprop:Generator_ColumnVarNameInTable="column관리책임자" msprop:Generator_ColumnPropNameInRow="관리책임자" msprop:Generator_ColumnPropNameInTable="관리책임자Column" msprop:Generator_UserColumnName="관리책임자" type="xs:string" minOccurs="0" />
+              <xs:element name="수리업체" msprop:Generator_ColumnVarNameInTable="column수리업체" msprop:Generator_ColumnPropNameInRow="수리업체" msprop:Generator_ColumnPropNameInTable="수리업체Column" msprop:Generator_UserColumnName="수리업체" type="xs:string" minOccurs="0" />
+              <xs:element name="수리업체연락처" msprop:Generator_ColumnVarNameInTable="column수리업체연락처" msprop:Generator_ColumnPropNameInRow="수리업체연락처" msprop:Generator_ColumnPropNameInTable="수리업체연락처Column" msprop:Generator_UserColumnName="수리업체연락처" type="xs:string" minOccurs="0" />
+              <xs:element name="관리순번" msprop:Generator_ColumnVarNameInTable="column관리순번" msprop:Generator_ColumnPropNameInRow="관리순번" msprop:Generator_ColumnPropNameInTable="관리순번Column" msprop:Generator_UserColumnName="관리순번" type="xs:int" minOccurs="0" />
+              <xs:element name="설비종류" msprop:Generator_ColumnVarNameInTable="column설비종류" msprop:Generator_ColumnPropNameInRow="설비종류" msprop:Generator_ColumnPropNameInTable="설비종류Column" msprop:Generator_UserColumnName="설비종류" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="설비가동고장집계" msprop:Generator_TableClassName="설비가동고장집계DataTable" msprop:Generator_TableVarName="table설비가동고장집계" msprop:Generator_TablePropName="설비가동고장집계" msprop:Generator_RowDeletingName="설비가동고장집계RowDeleting" msprop:Generator_RowChangingName="설비가동고장집계RowChanging" msprop:Generator_RowEvHandlerName="설비가동고장집계RowChangeEventHandler" msprop:Generator_RowDeletedName="설비가동고장집계RowDeleted" msprop:Generator_UserTableName="설비가동고장집계" msprop:Generator_RowChangedName="설비가동고장집계RowChanged" msprop:Generator_RowEvArgName="설비가동고장집계RowChangeEvent" msprop:Generator_RowClassName="설비가동고장집계Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="관리코드" msdata:Caption="DataColumn1" msprop:Generator_ColumnVarNameInTable="column관리코드" msprop:Generator_ColumnPropNameInRow="관리코드" msprop:Generator_ColumnPropNameInTable="관리코드Column" msprop:Generator_UserColumnName="관리코드" type="xs:string" minOccurs="0" />
+              <xs:element name="년도" msprop:Generator_ColumnVarNameInTable="column년도" msprop:Generator_ColumnPropNameInRow="년도" msprop:Generator_ColumnPropNameInTable="년도Column" msprop:Generator_UserColumnName="년도" type="xs:int" minOccurs="0" />
+              <xs:element name="분기" msprop:Generator_ColumnVarNameInTable="column분기" msprop:Generator_ColumnPropNameInRow="분기" msprop:Generator_ColumnPropNameInTable="분기Column" msprop:Generator_UserColumnName="분기" type="xs:int" minOccurs="0" />
+              <xs:element name="가동시간" msprop:Generator_ColumnVarNameInTable="column가동시간" msprop:Generator_ColumnPropNameInRow="가동시간" msprop:Generator_ColumnPropNameInTable="가동시간Column" msprop:Generator_UserColumnName="가동시간" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="보전이력Key1">
+      <xs:selector xpath=".//mstns:보전이력" />
+      <xs:field xpath="mstns:관리코드" />
+      <xs:field xpath="mstns:순번" />
+    </xs:unique>
+    <xs:unique name="중요부품Key1">
+      <xs:selector xpath=".//mstns:중요부품" />
+      <xs:field xpath="mstns:관리코드" />
+      <xs:field xpath="mstns:번호" />
+    </xs:unique>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:설비" />
+      <xs:field xpath="mstns:관리코드" />
+    </xs:unique>
+    <xs:unique name="설비가동고장집계_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:설비가동고장집계" />
+      <xs:field xpath="mstns:관리코드" />
+    </xs:unique>
+    <xs:unique name="설비가동고장집계Key1">
+      <xs:selector xpath=".//mstns:설비가동고장집계" />
+      <xs:field xpath="mstns:관리코드" />
+      <xs:field xpath="mstns:년도" />
+      <xs:field xpath="mstns:분기" />
+    </xs:unique>
+    <xs:keyref name="FK_설비_설비가동고장집계" refer="Constraint1" msprop:rel_Generator_UserChildTable="설비가동고장집계" msprop:rel_Generator_ChildPropName="Get설비가동고장집계Rows" msprop:rel_Generator_UserRelationName="FK_설비_설비가동고장집계" msprop:rel_Generator_ParentPropName="설비Row" msprop:rel_Generator_RelationVarName="relationFK_설비_설비가동고장집계" msprop:rel_Generator_UserParentTable="설비">
+      <xs:selector xpath=".//mstns:설비가동고장집계" />
+      <xs:field xpath="mstns:관리코드" />
+    </xs:keyref>
+    <xs:keyref name="FK_설비_중요부품" refer="Constraint1" msprop:rel_Generator_UserChildTable="중요부품" msprop:rel_Generator_ChildPropName="Get중요부품Rows" msprop:rel_Generator_UserRelationName="FK_설비_중요부품" msprop:rel_Generator_ParentPropName="설비Row" msprop:rel_Generator_RelationVarName="relationFK_설비_중요부품" msprop:rel_Generator_UserParentTable="설비">
+      <xs:selector xpath=".//mstns:중요부품" />
+      <xs:field xpath="mstns:관리코드" />
+    </xs:keyref>
+    <xs:keyref name="FK_설비_보전이력" refer="Constraint1" msprop:rel_Generator_UserChildTable="보전이력" msprop:rel_Generator_ChildPropName="Get보전이력Rows" msprop:rel_Generator_UserRelationName="FK_설비_보전이력" msprop:rel_Generator_ParentPropName="설비Row" msprop:rel_Generator_RelationVarName="relationFK_설비_보전이력" msprop:rel_Generator_UserParentTable="설비">
+      <xs:selector xpath=".//mstns:보전이력" />
+      <xs:field xpath="mstns:관리코드" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>
