@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Erp.YulChonMold.설비
 {
@@ -64,8 +65,8 @@ namespace Erp.YulChonMold.설비
                 new보전이력row.수리내역 = 보전이력row.수리내역;
                 new보전이력row.수리부품 = 보전이력row.수리부품;
                 new보전이력row.수리처 = 보전이력row.수리처;
-                new보전이력row.비용 = 보전이력row.비용;
-                new보전이력row.시간 = 보전이력row.시간;
+                new보전이력row.비용 = 보전이력row.시간;
+                new보전이력row.비용 = 보전이력row.시간;
                 new보전이력row.확인 = 보전이력row.확인;
                 new보전이력row.수리결과 = 보전이력row.수리결과;
                 new보전이력row.불출일자 = 보전이력row.불출일자;
@@ -76,12 +77,14 @@ namespace Erp.YulChonMold.설비
                 설비등록DS1.보전이력.Add보전이력Row(new보전이력row);
             }
 
+            NumberFormatInfo NF = new CultureInfo("ko-KR", false).NumberFormat;
+
             textBox관리번호.Text = 설비row.관리번호;
             textBox설비명.Text = 설비row.품명;
             textBox형식규격.Text = 설비row.규격;
             textBox제조회사.Text = 설비row.제조회사;
-            textBox구입일자.Text = 설비row.구입일자.ToString("yyyy-MM");
-            textBox구입금액.Text = 설비row.금액.ToString();
+            textBox구입일자.Text = 설비row.구입일자.ToString("yyyy-MM-dd");
+            textBox구입금액.Text = 설비row.금액.ToString("C", NF);
             textBox설치장소.Text = 설비row.설치장소;
             textBox등급관리자.Text = 설비row.등급 + " / " + 설비row.관리책임자;
 
@@ -194,7 +197,12 @@ namespace Erp.YulChonMold.설비
 
         private void button중요부품Save_Click(object sender, EventArgs e)
         {
+            if (Check중요부품data() == false)
+                return;
+
             List<Erp.BusinessLogic.설비관리.설비중요품목> 설비중요품목List = Make설비중요품목List();
+            //if (설비중요품목List.Count == 0)
+            //    return;
 
             try
             {
@@ -208,7 +216,27 @@ namespace Erp.YulChonMold.설비
             }
             //저장작업을 종료 후 Rowstate를 Unchange로 변경한다.
             설비등록DS1.중요부품.AcceptChanges();
-            fpSpread중요부품목록.ActiveSheet.ActiveRow.BackColor = Color.LightYellow;
+            fpSpread중요부품목록.ActiveSheet.ActiveRow.BackColor = Color.White;
+        }
+
+        private bool Check중요부품data()
+        {
+            foreach(설비등록DS.중요부품Row 중요부품row in 설비등록DS1.중요부품)
+            {
+                if (중요부품row.Is품명Null() || 중요부품row.품명 == "")
+                {
+                    MessageBox.Show("품명을 입력한 후에 다시 실행하십시오", 
+                        "품명 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                if (중요부품row.Is규격Null() || 중요부품row.규격 == "")
+                {
+                    MessageBox.Show("규격을 입력한 후에 다시 실행하십시오",
+                        "규격 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
         }
 
         private List<Erp.BusinessLogic.설비관리.설비중요품목> Make설비중요품목List()
@@ -238,7 +266,7 @@ namespace Erp.YulChonMold.설비
             설비등록DS.중요부품Row 중요부품row = 설비등록DS1.중요부품[fpSpread중요부품목록.ActiveSheet.ActiveRowIndex];
 
             //삭제를 할때는 삭제유무를 질문한 후에 실행한다.
-            DialogResult result = MessageBox.Show("중요부품(" + 중요부품row.품명 + ")을(를) 삭제하겠습니까? ", "중요부품 삭제유무", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("해당 중요부품을(를) 삭제하겠습니까? ", "중요부품 삭제유무", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
                 return;
 
@@ -327,6 +355,10 @@ namespace Erp.YulChonMold.설비
                 return;
 
             List<Erp.BusinessLogic.설비관리.설비수리이력> 설비수리이력List = Make설비수리이력List();
+
+            //if (설비수리이력List.Count == 0)
+            //    return;
+
             try
             {
                 Erp.BusinessLogic.Inventory.Update설비수리이력(설비수리이력List);
@@ -339,14 +371,14 @@ namespace Erp.YulChonMold.설비
             }
             //저장작업을 종료 후 Rowstate를 Unchange로 변경한다.
             설비등록DS1.보전이력.AcceptChanges();
-            fpSpread보전이력.ActiveSheet.ActiveRow.BackColor = Color.LightYellow;
+            fpSpread보전이력.ActiveSheet.ActiveRow.BackColor = Color.White;
         }
 
         private bool Check보전이력data()
         {
             foreach (설비등록DS.보전이력Row 보전이력row in 설비등록DS1.보전이력)
             {
-                if (보전이력row.고장내용 == "")
+                if (보전이력row.Is고장내용Null())
                 {
                     MessageBox.Show("고장내용을 입력한 후에 다시 실행하십시오",
                         "고장내용 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -358,18 +390,21 @@ namespace Erp.YulChonMold.설비
                         "수리일자 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+                if (보전이력row.Is수리내역Null())
+                    보전이력row.수리내역 = "";
+
+                if (보전이력row.Is수리부품Null())
+                    보전이력row.수리부품 = "";
+
+                if (보전이력row.Is수리처Null())
+                    보전이력row.수리처 = "";
+
                 if (보전이력row.Is비용Null())
-                {
-                    MessageBox.Show("비용을 입력한 후에 다시 실행하십시오",
-                        "비용 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                    보전이력row.비용 = 0;
+
                 if (보전이력row.Is시간Null())
-                {
-                    MessageBox.Show("시간을 입력한 후에 다시 실행하십시오",
-                        "시간 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                    보전이력row.시간 = 0;
+
             }
             return true;
         }
@@ -411,7 +446,7 @@ namespace Erp.YulChonMold.설비
             설비등록DS.보전이력Row 보전이력row = 설비등록DS1.보전이력[fpSpread보전이력.ActiveSheet.ActiveRowIndex];
 
             //삭제를 할때는 삭제유무를 질문한 후에 실행한다.
-            DialogResult result = MessageBox.Show("보전이력(" + 보전이력row.수리일자 + ")을(를) 삭제하겠습니까? ", "보전이력 삭제유무", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("해당 보전이력을(를) 삭제하겠습니까? ", "보전이력 삭제유무", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
                 return;
 
@@ -434,11 +469,6 @@ namespace Erp.YulChonMold.설비
             }
 
             설비등록DS1.보전이력.Remove보전이력Row(보전이력row);
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

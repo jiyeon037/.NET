@@ -100,15 +100,20 @@ namespace Erp.YulChonMold.설비
             설비등록DS.설비Row new설비row = 설비등록DS.설비.New설비Row(); // 객체 생성 메소드
             new설비row.관리코드 = "";
             new설비row.관리번호 = "";
-            new설비row.관리순번 = 0;
-            new설비row.설비종류 = 1; // 1 : 설비
-            new설비row.품명 = "";
-            new설비row.규격 = "";
+            new설비row.품명 = null;
+            new설비row.규격 = null;
             new설비row.제조회사 = "";
+//             new설비row.구입일자 = ;
             new설비row.금액 = 0;
             new설비row.설치장소 = "";
             new설비row.등급 = "";
+            new설비row.관리부서 = "";
             new설비row.관리책임자 = "";
+            new설비row.수리업체 = "";
+            new설비row.수리업체연락처 = "";
+            new설비row.관리순번 = 0;
+            new설비row.설비종류 = 1; // 1 : 설비
+          
             // 새로운 행을 추가한다
             설비등록DS.설비.Add설비Row(new설비row);
             // 추가된 행에 커서를 옮긴다
@@ -157,10 +162,15 @@ namespace Erp.YulChonMold.설비
                 // 그러므로 현재 선택된 행의 설비Row를 구하는 방법은 ActiveRowIdex 순서에 있는 행을 가져온다.
                 설비등록DS.설비Row 설비row = 설비등록DS.설비[fpSpread설비등록.ActiveSheet.ActiveRowIndex];
                 //관리번호
+
+                if (설비row.Is관리번호Null())
+                    return;
+
                 설비row.관리순번 = 0;
                 // 입력된 관리번호를 이용하여 다음 관리순번을 구한다.  
                 설비row.관리순번 = GetNext관리순번(설비row.관리번호);
                 설비row.관리코드 = 설비row.관리번호 + "-" + 설비row.관리순번;
+
             }
         }
 
@@ -245,7 +255,7 @@ namespace Erp.YulChonMold.설비
         {
             foreach(설비등록DS.설비Row 설비row in 설비등록DS.설비)
             {
-                if (설비row.관리번호 == "")
+                if (설비row.Is관리번호Null())
                 {
                     MessageBox.Show("해당 행의 관리번호를 입력한 후에 다시 실행하십시오",
                         "관리번호 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -274,65 +284,37 @@ namespace Erp.YulChonMold.설비
 
                 if (설비row.Is제조회사Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 제조회사를 입력한 후에 다시 실행하십시오",
-                        "제조회사 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (설비row.Is구입일자Null())
-                {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 구입일자를 입력한 후에 다시 실행하십시오",
-                        "구입일자 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.제조회사 = "";
                 }
 
                 if (설비row.Is금액Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 금액을 입력한 후에 다시 실행하십시오",
-                        "금액 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.금액 = 0;
                 }
 
                 if (설비row.Is설치장소Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 설치장소를 입력한 후에 다시 실행하십시오",
-                        "설치장소 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (설비row.Is등급Null())
-                {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 등급을 입력한 후에 다시 실행하십시오",
-                        "등급 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.설치장소 = "";
                 }
 
                 if (설비row.Is관리부서Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 관리부서를 입력한 후에 다시 실행하십시오",
-                        "관리부서 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.관리부서 = "";
                 }
 
                 if (설비row.Is관리책임자Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 관리책임자를 입력한 후에 다시 실행하십시오",
-                        "관리책임자 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.관리책임자 = "";
                 }
 
                 if (설비row.Is수리업체Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 수리업체를 입력한 후에 다시 실행하십시오",
-                        "수리업체 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.수리업체 = "";
                 }
 
                 if (설비row.Is수리업체연락처Null())
                 {
-                    MessageBox.Show("관리코드[ " + 설비row.관리코드 + "]의 수리업체연락처를 입력한 후에 다시 실행하십시오",
-                        "수리업체연락처 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    설비row.수리업체연락처 = "";
                 }
             }
             return true;
@@ -431,5 +413,32 @@ namespace Erp.YulChonMold.설비
                 return;
         }
 
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            설비등록대장인쇄Form 설비등록대장인쇄form = new 설비등록대장인쇄Form();
+
+            //대기중일때 커서 모양 바꾸기
+            this.Cursor = Cursors.WaitCursor;
+            DialogResult result = 설비등록대장인쇄form.ShowDialog();
+
+            //완료하면 다시 커서 모양 바꾸기
+            this.Cursor = Cursors.Default;
+
+            if (result == DialogResult.Cancel)
+                return;
+        }
+
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            if (this.Parent is Form)
+            {
+                ((Form)this.Parent).Close();
+            }
+            else if (this.Parent.Parent is Form)
+            {
+                ((Form)this.Parent.Parent).Close();
+            }
+        }
     }
 }

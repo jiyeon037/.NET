@@ -50,7 +50,7 @@ namespace Erp.YulChonMold.설비
             Show설비Data(dataSet.Tables[0]);
             Show중요부품품목Data(dataSet.Tables[1]);
             Show보전이력Data(dataSet.Tables[2]);
-            Show설비가동고장집계Data(dataSet.Tables[3]);
+         //   Show설비가동고장집계Data(dataSet.Tables[3]);
 
         }
 
@@ -67,11 +67,11 @@ namespace Erp.YulChonMold.설비
             sheetView.Cells["설비명"].Value = dataRow["품명"].ToString();
             sheetView.Cells["형식또는규격"].Value = dataRow["규격"].ToString();
             sheetView.Cells["제조회사"].Value = dataRow["제조회사"].ToString();
-            sheetView.Cells["구입일자"].Value = Convert.ToDateTime(dataRow["구입일자"]).ToString("yyyy-MM");
+            sheetView.Cells["구입일자"].Value = Convert.ToDateTime(dataRow["구입일자"]).ToString("yyyy-MM-dd");
             sheetView.Cells["구입금액"].Value = Convert.ToInt32(dataRow["금액"]);
             sheetView.Cells["설치장소"].Value = dataRow["설치장소"].ToString();
-            sheetView.Cells["등급"].Value = dataRow["등급"].ToString();
-            sheetView.Cells["관리자"].Value = dataRow["관리책임자"].ToString();
+            sheetView.Cells["등급"].Value = "              " + dataRow["등급"].ToString();
+            sheetView.Cells["관리자"].Value = dataRow["관리책임자"].ToString() + "       ";
             if (dataRow["사진"] != vs)
                 sheetView.Cells["사진및약도"].Value = (byte[])dataRow["사진"];
         }
@@ -100,6 +100,7 @@ namespace Erp.YulChonMold.설비
                 sheetView.Cells["일자" + cnt].Value = Convert.ToDateTime(dataRow["수리일자"]).ToString("yyyy-MM-dd");
                 sheetView.Cells["고장내용" + cnt].Value = dataRow["고장내용"].ToString();
                 sheetView.Cells["수리점검내용" + cnt].Value = dataRow["수리내역"].ToString();
+                sheetView.Cells["수리부품" + cnt].Value = dataRow["수리부품"].ToString();
                 sheetView.Cells["수리처구매처" + cnt].Value = dataRow["수리처"].ToString();
                 sheetView.Cells["비용" + cnt].Value = dataRow["비용"];
                 sheetView.Cells["시간" + cnt].Value = dataRow["시간"];
@@ -252,7 +253,7 @@ namespace Erp.YulChonMold.설비
                 //pi.RepeatRowStart = 1;
 
                 //한 페이지에 출력이 가능하도록 맞춘다. 축소옵션
-                pi.ZoomFactor = 1.01f;
+                pi.ZoomFactor = 0.9f;
 
                 //정렬
                 pi.Centering = FarPoint.Win.Spread.Centering.Horizontal;
